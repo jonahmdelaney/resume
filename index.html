@@ -1,18 +1,33 @@
-
-html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jonah Delaney - Resume</title>
   <style>
+    :root {
+      --bg: #ffffff;
+      --text: #222222;
+      --banner: #f0f0f0;
+      --accent: #444;
+    }
+
+    [data-theme="dark"] {
+      --bg: #121212;
+      --text: #e0e0e0;
+      --banner: #1e1e1e;
+      --accent: #58a6ff;
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       max-width: 900px;
       margin: 2rem auto;
       padding: 0 1rem;
-      color: #222;
-      background: #fff;
+      background-color: var(--bg);
+      color: var(--text);
       line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     header {
@@ -26,16 +41,22 @@ html lang="en">
       max-width: 600px;
     }
 
-    .qr-code {
+    .linkedin-badge {
       width: 100px;
-      height: 100px;
-      background-color: #eee;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      color: #666;
-      border: 1px solid #ccc;
+      min-height: 100px;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: 1px solid var(--text);
+      color: var(--text);
+      padding: 0.4rem 0.6rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      border-radius: 4px;
     }
 
     h1 {
@@ -46,9 +67,9 @@ html lang="en">
     h2 {
       font-size: 1.2rem;
       margin-top: 2rem;
-      background-color: #f0f0f0;
+      background-color: var(--banner);
       padding: 0.4rem 0.6rem;
-      border-left: 5px solid #444;
+      border-left: 5px solid var(--accent);
     }
 
     h3 {
@@ -87,14 +108,29 @@ html lang="en">
       font-style: italic;
     }
 
+    .linkedin-light,
+    .linkedin-dark {
+      display: none;
+    }
+
+    [data-theme="light"] .linkedin-light {
+      display: block;
+    }
+
+    [data-theme="dark"] .linkedin-dark {
+      display: block;
+    }
+
     @media (max-width: 600px) {
-      .qr-code {
+      .linkedin-badge {
         margin-top: 1rem;
       }
     }
   </style>
 </head>
 <body>
+<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+  <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
 
   <header>
     <div class="contact-info">
@@ -104,17 +140,16 @@ html lang="en">
       (985) 774-0558<br>
       <a href="mailto:jonah.m.delaney@gmail.com">jonah.m.delaney@gmail.com</a></p>
     </div>
-    <div class="qr-code">
-      QR Code<br>Placeholder
-    </div>
-  </header>
-
-  <div class="section">
+    <div class="linkedin-badge">
+      <div class="linkedin-light">
+        <div data-version="v1" data-vanity="jonahdelaney" data-type="VERTICAL" data-theme="light" data-size="medium" data-locale="en_US" class="badge-base LI-profile-badge">
+          <a href="https://www.linkedin.com/in/jonahdelaney?trk=profile-badge" class="badge-base__link LI-simple-link">Jonahdark">
+        <div data-version="v1" data-vanity="jonahdelaney" data-type="VERTICAL" data-theme="dark" data-size="medium" data-locale="en_US" class="badge-base LI-profile-badge">
+          <a href="https://www.linkedin.com/in/jonahdelaney?trk=profile-badge" class="badge-base__link LI-simple-link">Jonah Delaney</"section">
     <h2>Professional Summary</h2>
     <p>Entry-level IT professional with experience in Tier 3 support, system deployment, and troubleshooting. Proven ability to manage end-user services and lead projects using tools such as Azure, DevOps, and ServiceNOW. Committed to security compliance, providing thorough documentation, and process innovation.</p>
   </div>
-
-  <div class="section">
+<div class="section">
     <h2>Professional Experience</h2>
 
     <h3 class="job-title">Tier 3 PC Support Technician – Pearl River Technologies / Leidos</h3>
@@ -208,7 +243,7 @@ html lang="en">
       </ul>
       <ul>
         <li>JAMF Pro</li>
-<li>Data Retention</li>
+        <li>Data Retention</li>
         <li>Microsoft Office Suite</li>
         <li>MyID Operator Client</li>
         <li>Power Automate</li>
@@ -235,6 +270,20 @@ html lang="en">
         Email: <a href="mailto:troyvance32@gmail.com">troyvance32@gmail.com</a> | Phone: (601) 590-1785</li>
     </ul>
   </div>
+
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute("data-theme");
+      const next = current === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem("theme", next);
+    }
+
+    (function () {
+      const saved = localStorage.getItem("theme") || "light";
+      document.documentElement.setAttribute("data-theme", saved);
+    })();
+  </script>
 
 </body>
 </html>
