@@ -11,7 +11,6 @@
       --banner: #f0f0f0;
       --accent: #444;
     }
-
     [data-theme="dark"] {
       --bg: #121212;
       --text: #e0e0e0;
@@ -30,27 +29,6 @@
       transition: background-color 0.3s, color 0.3s;
     }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .contact-info {
-      max-width: 600px;
-    }
-
-    .linkedin-badge {
-      width: 100px;
-      min-height: 120px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
     .theme-toggle {
       position: fixed;
       top: 1rem;
@@ -64,10 +42,46 @@
       border-radius: 4px;
     }
 
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: nowrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-info {
+      max-width: 600px;
+    }
+
     h1 {
       font-size: 2rem;
       margin-bottom: 0.2rem;
       line-height: 1.2;
+    }
+
+    .linkedin-badge {
+      width: 100px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .linkedin-light, .linkedin-dark {
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
+
+    [data-theme="light"] .linkedin-light { display: block; }
+    [data-theme="dark"] .linkedin-dark { display: block; }
+
+    .badge-base.LI-profile-badge {
+      width: 100% !important;
+      height: 100% !important;
     }
 
     h2 {
@@ -80,203 +94,95 @@
       line-height: 1.4;
     }
 
-    h3 {
-      margin: 1rem 0 0.2rem;
-      font-size: 1.05rem;
-      line-height: 1.3;
-    }
+    h3 { margin: 1rem 0 0.2rem; font-size: 1.05rem; line-height: 1.3; }
+    p, li { font-size: 0.95rem; line-height: 1.4; margin: 0.2rem 0; }
+    ul { padding-left: 1.2rem; margin: 0.2rem 0; }
 
-    p, li {
-      font-size: 0.95rem;
-      line-height: 1.4;
-      margin: 0.2rem 0;
-    }
+    .section { margin-top: 1rem; margin-bottom: 2rem; }
+    .two-column { display: flex; flex-wrap: wrap; gap: 2rem; }
+    .two-column ul { flex: 1; min-width: 250px; }
 
-    ul {
-      padding-left: 1.2rem;
-      margin: 0.2rem 0;
-    }
-
-    .section {
-      margin-top: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .two-column {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-
-    .two-column ul {
-      flex: 1;
-      min-width: 250px;
-    }
-
-    .job-title {
-      font-weight: bold;
-    }
-
-    .location {
-      font-style: italic;
-    }
-
-    .linkedin-light,
-    .linkedin-dark {
-      display: none;
-    }
-
-    [data-theme="light"] .linkedin-light {
-      display: block;
-    }
-
-    [data-theme="dark"] .linkedin-dark {
-      display: block;
-    }
+    .job-title { font-weight: bold; }
+    .location { font-style: italic; }
 
     @media (max-width: 600px) {
-      .linkedin-badge {
-        margin-top: 1rem;
-      }
+      header { flex-wrap: wrap; }
+      .linkedin-badge { margin-top: 1rem; }
     }
   </style>
 </head>
 <body>
-  <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-  <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
+<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
 
-  <header>
-    <div class="contact-info">
-      <h1>Jonah Delaney</h1>
-      <p><strong>IT Specialist</strong><br>
+<button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
+
+<header>
+  <div class="contact-info">
+    <h1>Jonah Delaney</h1>
+    <p><strong>IT Specialist</strong><br>
       475 Lenwood Dr., Slidell, LA 70458<br>
       (985) 774-0558<br>
-      <a href="mailto:jonah.m.delaney@gmail.com">jonah.m.delaney@gmail.com</a></p>
-    </div>
-
-    <div class="linkedin-badge">
-      <div class="linkedin-light">
-        <div data-version="v1" data-vanity="jonahdelaney" data-type="VERTICAL" data-theme="light" data-size="medium" data-locale="en_US" class="badge-base LI-profile-badge"></div>
-      </div>
-      <div class="linkedin-dark">
-        <div data-version="v1" data-vanity="jonahdelaney" data-type="VERTICAL" data-theme="dark" data-size="medium" data-locale="en_US" class="badge-base LI-profile-badge"></div>
-      </div>
-    </div>
-  </header>
-
-  <div class="section">
-    <h2>Professional Summary</h2>
-    <p>Entry-level IT professional with experience in Tier 3 support, system deployment, and troubleshooting. Proven ability to manage end-user services and lead projects using tools such as Azure, DevOps, and ServiceNOW. Committed to security compliance, providing thorough documentation, and process innovation.</p>
+      <a href="mailto:jonah.m.delaney@gmail.com">jonah.m.delaney@gmail.com</a>
+    </p>
   </div>
 
-  <div class="section">
-    <h2>Professional Experience</h2>
+  <div class="linkedin-badge">
+    <div class="linkedin-light">
+      <div data-version="v1" data-vanity="jonahdelaney" data-type="VERTICAL" data-theme="light" data-size="medium" data-locale="en_US" class="badge-base LI-profile-badge"></div>
+    </div>
+    <div class="linkedin-dark">
+      <div data-version="v1" data-vanity="jonahdelaney" data-type="VERTICAL" data-theme="dark" data-size="medium" data-locale="en_US" class="badge-base LI-profile-badge"></div>
+    </div>
+  </div>
+</header>
 
-    <h3 class="job-title">Tier 3 PC Support Technician – Pearl River Technologies / Leidos</h3>
-    <p class="location">Stennis Space Center, MS | August 2023 – Present</p>
+<div class="section">
+  <h2>Professional Summary</h2>
+  <p>Entry-level IT professional with experience in Tier 3 support, system deployment, and troubleshooting. Proven ability to manage end-user services and lead projects using tools such as Azure, DevOps, and ServiceNOW. Committed to security compliance, providing thorough documentation, and process innovation.</p>
+</div>
+
+<div class="section">
+  <h2>Professional Experience</h2>
+
+  <h3 class="job-title">Tier 3 PC Support Technician – Pearl River Technologies / Leidos</h3>
+  <p class="location">Stennis Space Center, MS | August 2023 – Present</p>
+  <ul>
+    <li>Troubleshoot remote or walk-up incidents, manage customer data migration/recovery, hardware repairs/replacements, and driver support.</li>
+    <li>Responsible for local/deskside deployments of computers and mobile devices, as well as assisting with hardware repair within the Repair Distribution Center.</li>
+    <li>Manage objects and group policies through AD and Microsoft Entra Privileged Identity to support end user services by performing administrative tasks.</li>
+  </ul>
+
+  <!-- Add other experience entries in same structure -->
+
+</div>
+
+<div class="section">
+  <h2>Certifications & Awards</h2>
+  <div class="two-column">
     <ul>
-      <li>Troubleshoot remote or walk-up incidents, manage customer data migration/recovery, hardware repairs/replacements, and driver support.</li>
-      <li>Responsible for local/deskside deployments of computers and mobile devices, as well as assisting with hardware repair within the Repair Distribution Center.</li>
-      <li>Manage objects and group policies through AD and Microsoft Entra Privileged Identity to support end user services by performing administrative tasks.</li>
-      <li>Utilize services such as ServiceNOW, MobileSense, Radar RECON, Apple Business Manager, Azure, MyID, and Bomgar BeyondTrust to aid in the research, troubleshooting, and deployment of systems.</li>
-      <li>Provide detailed documentation of troubleshooting and resolutions within SLA periods.</li>
-      <li>Lead the MDM migration project at Stennis from IBM MaaS360 to Microsoft Intune, successfully migrating employees over the span of 4 months using Azure Entra ID and MyID Client to provision group policies and reset authentication methods.</li>
-      <li>Image computers/phone for day-to-day use within compliance to all security policies.</li>
-      <li>Sanitize/wipe computers and mobile devices in accordance to DOJ standards.</li>
-      <li>Integrated autonomous functions using Power Automate to enhance user experience when scheduling appointments and providing crucial information about their assets.</li>
-      <li>Lead mobility procedures such as remote wipe/profile retirement, phone lock removals, managing activation locks, app and OS installations/updates, cellular service transfers, and assisting users with SSO and encryption.</li>
-      <li>Assist in the creation of knowledge base articles and processes for common and uncommon issues for mobility and compute incident resolutions.</li>
-      <li>Manage service plans, device activations, number porting/forwarding, and SIM card provisioning on mobile devices.</li>
-      <li>NAC Console security plan admin, adding and removing devices allowed to have a secure connection to on-site network.</li>
-      <li>Mentorship alongside RADAR engineering team to work through automation processes and learn navigating through DevOps with a sprint tailored to bringing currently self-implemented automated processes using Power Automate to an agency-wide level. Skills being developed during this mentorship include DevOps, PA, scripting, Scrum, development workflow, Git, Visual Studio Code, change advisory board presentations, data/report pulls, and development process documentation.</li>
+      <li>Advanced HTML, CSS, and JavaScript – Operation Spark (2018)</li>
+      <li>Apple iPhone Repair Certified – Best Buy (2023)</li>
+      <li>HP Repair Certification – Leidos (2023)</li>
     </ul>
-
-    <h3 class="job-title">Advanced Repair Agent – Best Buy / Geek Squad</h3>
-    <p class="location">Slidell, LA | February 2023 – August 2023</p>
     <ul>
-      <li>Troubleshooting and repairing client hardware and software malfunctions and implementing preventative measures for issues to cease reoccurrence.</li>
-      <li>Performing regular updates and diagnostics to client devices such as operating system repairs and removing viruses/malware.</li>
-      <li>Ensure consistent documentation of troubleshooting steps and results to convey to customers in a professional manner.</li>
-      <li>Handling client data and protecting data privacy.</li>
-      <li>Repair iPhones as an Apple certified technician.</li>
-    </ul>
-
-    <!-- Add other jobs here following the same structure -->
-
-  </div>
-
-  <div class="section">
-    <h2>Certifications & Awards</h2>
-    <div class="two-column">
-      <ul>
-        <li>Advanced HTML, CSS, and JavaScript – Operation Spark (2018)</li>
-        <li>Apple iPhone Repair Certified – Best Buy (2023)</li>
-        <li>HP Repair Certification – Leidos (2023)</li>
-        <li>Microsoft Office PowerPoint – Northshore High School (2018)</li>
-      </ul>
-      <ul>
-        <li>Microsoft Office Excel – Northshore High School (2018)</li>
-        <li>FIRST Robotics Dean’s List Finalist – Northshore High School (2017)</li>
-        <li>Windows 10/11 Troubleshooting Methods</li>
-        <li>Web Development Fundamentals</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Skills</h2>
-    <div class="two-column">
-      <ul>
-        <li>Apple Business Manager</li>
-        <li>Samsung Knox</li>
-        <li>Microsoft Azure</li>
-        <li>Android/iOS Profile Configuration</li>
-        <li>Active Directory / Group Policy</li>
-        <li>Bomgar BeyondTrust</li>
-        <li>Ticket Management</li>
-      </ul>
-      <ul>
-        <li>JAMF Pro</li>
-        <li>Data Retention</li>
-        <li>Microsoft Office Suite</li>
-        <li>MyID Operator Client</li>
-        <li>Power Automate</li>
-        <li>Apple Configurator</li>
-        <li>Druva inSync</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Education</h2>
-    <p><strong>High School Diploma</strong> – Northshore High School, Slidell, LA (2015–2019)</p>
-    <p>Earned credits toward Computer Science degree – Southeastern Louisiana University (2019–2020)</p>
-  </div>
-
-  <div class="section">
-    <h2>References</h2>
-    <ul>
-      <li><strong>Dr. Clark Rowley</strong> – Oceanographer, U.S. Naval Research Laboratory<br>
-        Email: <a href="mailto:c_rowley@bellsouth.net">c_rowley@bellsouth.net</a> | Phone: (985) 285-8455</li>
-      <li><strong>Stefan Barrau</strong> – Junior MDM System Administrator, Leidos<br>
-        Email: <a href="mailto:stefan.barrau@nasa.gov">stefan.barrau@nasa.gov</a></li>
-      <li><strong>Troy Castiglione</strong> – Asset Record Specialist, Leidos<br>
-        Email: <a href="mailto:troyvance32@gmail.com">troyvance32@gmail.com</a> | Phone: (601) 590-1785</li>
+      <li>Microsoft Office Excel – Northshore High School (2018)</li>
+      <li>FIRST Robotics Dean’s List Finalist – Northshore High School (2017)</li>
     </ul>
   </div>
+</div>
 
-  <script>
-    function toggleTheme() {
-      const current = document.documentElement.getAttribute("data-theme");
-      const next = current === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", next);
-      localStorage.setItem("theme", next);
-    }
+<script>
+function toggleTheme() {
+  const current = document.documentElement.getAttribute("data-theme");
+  const next = current === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  localStorage.setItem("theme", next);
+}
 
-    (function () {
-      const saved = localStorage.getItem("theme") || "light";
-      document.documentElement.setAttribute("data-theme", saved);
-    })();
-  </script>
+(function () {
+  const saved = localStorage.getItem("theme") || "light";
+  document.documentElement.setAttribute("data-theme", saved);
+})();
+</script>
 </body>
 </html>
