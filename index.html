@@ -101,18 +101,43 @@
     .job-title { font-weight: bold; text-decoration: underline; }
     .location { font-style: italic; }
 
+  .navbar {
+    position:sticky; top:0; z-index:1000;
+    display:flex; flex-wrap:wrap; align-items:center;
+    background:#333; padding:.5rem 1rem;
+    width:100%;
+  }
+  .navbar a, .navbar button {
+    color:#fff; text-decoration:none; margin-right:1rem; padding:.5rem;
+    background:none; border:none; cursor:pointer;
+  }
+  .navbar a:hover, .navbar button:hover { background:#444; border-radius:4px; }
+  .navbar button { margin-left:auto; }
+
     @media (max-width: 600px) {
       header { flex-wrap: wrap; }
       .linkedin-badge { margin-top: 1rem; }
+    .navbar{flex-direction:column; align-items:flex-start;}
+    .navbar button{margin-left:0; width:100%; text-align:left;}
+    .navbar a{width:100%; margin-right:0;}
     }
   </style>
 </head>
 <body>
 <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
 
-<button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
-
 <header>
+
+<div class="navbar">
+  <a href="index.html">Home</a>
+  <a href="#">Page 1</a>
+  <a href="#">Page 2</a>
+  <button id="darkToggle" onclick="toggleTheme()">Dark Mode</button>
+</div>
+
+
+</header>
+
   <div class="linkedin-badge">
     <div class="linkedin-light">
 <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="light" data-type="HORIZONTAL" data-vanity="jonahdelaney" data-version="v1"></div>
@@ -121,7 +146,6 @@
 <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="HORIZONTAL" data-vanity="jonahdelaney" data-version="v1"></div>
     </div>
   </div>
-</header>
 
 <div class="professional_summary">
   <h2>Professional Summary</h2>
@@ -259,6 +283,7 @@
 </div>
 
 <script>
+
 function toggleTheme() {
   const current = document.documentElement.getAttribute("data-theme");
   const next = current === "dark" ? "light" : "dark";
