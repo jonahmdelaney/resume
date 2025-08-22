@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  
+
   <meta name="robots" content="noindex">
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Proper scaling on mobile -->
+  <meta name="referrer" content="strict-origin-when-cross-origin"> <!-- Prevents full URLs from being sent to external sites when users click links -->
+  <meta http-equiv="X-Frame-Options" content="DENY"> <!-- Prevents site from being embedded in iframe -->
+  <meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  script-src 'self' https://gc.zgo.at;
+  style-src 'self' 'unsafe-inline';
+  img-src 'self' data:;
+  font-src 'self';
+  object-src 'none';
+  base-uri 'self';
+  form-action 'none';" > <!-- CSP policy -->
+
+  
 <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
   <title>Resume Home</title>
   <style>
