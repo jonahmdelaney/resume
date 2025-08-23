@@ -1,5 +1,4 @@
 const ENDPOINT = "https://script.google.com/macros/s/AKfycbwgWAtFnaufrr23LRNIWjbvPdHvZLdyReGiRYoNUJrL0MO4McAFd7RqfzKKdGbCUTIk/exec";
-
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function setStatus(msg, ok = true) {
@@ -19,26 +18,17 @@ async function submitContact(e) {
   const message = form.message.value.trim();
   const hp = form.hp.value.trim(); // honeypot
 
-  // bot check
-  if (hp) {
-    setStatus("Thanks! Your message has been sent.");
-    form.reset();
-    return;
-  }
-
-  // quick validations
+  if (hp) { setStatus("Thanks! Your message has been sent."); form.reset(); return; }
   if (!EMAIL_RE.test(email)) { setStatus("Please enter a valid email address.", false); return; }
   if (!subject) { setStatus("Please add a subject.", false); return; }
   if (!message) { setStatus("Please write a message.", false); return; }
 
-  // disable button while sending
   const btn = document.getElementById("send-btn");
-  const prevLabel = btn ? btn.textContent : "";
+  const prev = btn ? btn.textContent : "";
   if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
 
   try {
     const body = new URLSearchParams({ email, subject, message, hp });
-
     const res = await fetch(ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
@@ -46,18 +36,16 @@ async function submitContact(e) {
     });
 
     const data = await res.json().catch(() => ({}));
-    if (data && data.ok) {
-      setStatus("Thanks! Your message has been sent.");
-      form.reset();
-    } else {
-      setStatus("Sorry—couldn’t send your message. " + (data?.error || "Unknown error."), false);
+    
+    if (data && data.ok) { setStatus("Thanks! Your message has been sent."); form.reset(); }
+        else { setStatus("Sorry—couldn’t send your message. " + (data?.error || "Unknown error."), false); }
+      }
+        catch {
+          setStatus("Network error. Please try again.", false);
+        } finally {
+          if (btn) { btn.disabled = false; btn.textContent = prev; }
+        }
     }
-  } catch {
-    setStatus("Network error. Please try again.", false);
-  } finally {
-    if (btn) { btn.disabled = false; btn.textContent = prevLabel; }
-  }
-}
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contact-form");
