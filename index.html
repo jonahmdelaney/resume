@@ -105,12 +105,17 @@
       min-width: 300px;
     }
 
-    .contact-form input, .contact-form textarea {
-      width: 100%;
-      padding: 0.5rem;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #cfcfcf;
+  background: var(--bg);
+  color: var(--text);
+  box-sizing: border-box;  /* this fixes overflow issue I was having */
+}
+
     
     /* Accessible helper for live status text */
     .visually-hidden {
