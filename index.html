@@ -8,18 +8,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Proper scaling on mobile -->
   <meta name="referrer" content="strict-origin-when-cross-origin"> <!-- Prevents full URLs from being sent to external sites when users click links -->
   <meta http-equiv="X-Frame-Options" content="DENY"> <!-- Prevents site from being embedded in iframe -->
-  <meta http-equiv="Content-Security-Policy" content=" 
-        default-src 'self';
-        script-src 'self' 'unsafe-inline' https://gc.zgo.at https://platform.linkedin.com;
-        style-src 'self' 'unsafe-inline';
-        img-src 'self' data: https://media.licdn.com;
-        font-src 'self';
-        object-src 'none';
-        base-uri 'self'; 
-        form-action 'none';
-        frame-src https://www.linkedin.com;
-        connect-src 'self';
-   "> <!-- CSP policy -->
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  script-src 'self' https://platform.linkedin.com;
+  style-src 'self' 'unsafe-inline' https://platform.linkedin.com;
+  img-src 'self' data: https://media.licdn.com;
+  font-src 'self';
+  object-src 'none';
+  base-uri 'self';
+  form-action 'none';
+  frame-src https://www.linkedin.com;
+  connect-src 'self' https://www.linkedin.com;
+"> <!-- CSP policy -->
 
   
 <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
