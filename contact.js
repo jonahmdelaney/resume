@@ -18,7 +18,11 @@ async function submitContact(e) {
   const message = form.message.value.trim();
   const hp = form.hp.value.trim(); // honeypot
 
-  if (hp) { setStatus("Thanks! Your message has been sent."); form.reset(); return; }
+  if (hp) { 
+    setStatus("Thanks! Your message has been sent."); 
+    form.reset(); 
+    return; 
+  }
   if (!EMAIL_RE.test(email)) { setStatus("Please enter a valid email address.", false); return; }
   if (!subject) { setStatus("Please add a subject.", false); return; }
   if (!message) { setStatus("Please write a message.", false); return; }
@@ -29,23 +33,24 @@ async function submitContact(e) {
 
   try {
     const body = new URLSearchParams({ email, subject, message, hp });
-    const res = await fetch(ENDPOINT, {
+
+    await fetch(ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-      body
+      body,
+      mode: "no-cors"  // fire-and-forget; no CORS errors
     });
 
-    const data = await res.json().catch(() => ({}));
-    
-    if (data && data.ok) { setStatus("Thanks! Your message has been sent."); form.reset(); }
-        else { setStatus("Sorry—couldn’t send your message. " + (data?.error || "Unknown error."), false); }
-      }
-        catch {
-          setStatus("Network error. Please try again.", false);
-        } finally {
-          if (btn) { btn.disabled = false; btn.textContent = prev; }
-        }
-    }
+    // Always show success if the request left the browser
+    setStatus("Thanks! Your message has been sent.");
+    form.reset();
+  } catch {
+    setStatus("Network error. Please try again.", false);
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = prev; }
+  }
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contact-form");
