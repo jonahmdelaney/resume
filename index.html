@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Proper scaling on mobile -->
   <meta name="referrer" content="strict-origin-when-cross-origin"> <!-- Prevents full URLs from being sent to external sites when users click links -->
   <meta http-equiv="X-Frame-Options" content="DENY"> <!-- Prevents site from being embedded in iframe -->
-  <meta http-equiv="X-Content-Type-Options" content="nosniff"> <!-- Prevents browsers from trying to “guess” the type of a file -->
 
  <script src="darkmode.js"></script> <!-- Import JS file from main -->
  <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script> <!-- Import JS for LinkedIn badge profile, will be used as a dynamic header -->
@@ -93,6 +92,13 @@
       border-radius: 6px;
       border: 1px solid #ccc;
     }
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px; width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap;
+    }
     
   </style> <!-- CSS ENDS HERE -->
   
@@ -110,6 +116,29 @@
 
 
 </header>
+  <section id="contact" class="contact-container">
+  <div class="contact-form">
+    <h2>Contact Me</h2>
+    <form id="contact-form" novalidate>
+      <!-- Honeypot: hidden field to trap bots -->
+      <input type="text" name="hp" id="hp" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;">
+
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" inputmode="email" autocomplete="email" required aria-required="true" placeholder="you@example.com">
+
+      <label for="subject">Subject</label>
+      <input type="text" id="subject" name="subject" required aria-required="true" placeholder="Subject">
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6" required aria-required="true" placeholder="Write your message here..."></textarea>
+
+      <button type="submit" id="send-btn">Send</button>
+
+      <!-- Status messages (screen-reader friendly) -->
+      <p id="form-status" role="status" aria-live="polite" class="visually-hidden"></p>
+    </form>
+  </div>
+</section>
 
   <div class="linkedin-badge">
     <div class="linkedin-light">
