@@ -43,7 +43,7 @@
     header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
     .contact-info { max-width: 600px; margin-top: 3rem; }
     h1 { font-size: 3rem; margin-bottom: 0.2rem; line-height: 1.2; }
-    .linkedin-badge { height: 120px; display: flex; align-items: center; justify-content: center; flex-shrink: 5; margin-bottom: 6rem; }
+    .linkedin-badge, .contact-form { height: 120px; display: flex; align-items: center; justify-content: center; flex-shrink: 5; margin-bottom: 6rem; }
     .linkedin-light, .linkedin-dark { width: 100%; height: 100%; display: none; }
     
     [data-theme="light"] .linkedin-light { display: block; }
@@ -74,7 +74,13 @@
       .navbar button { margin-left:0; width:100%; text-align:left; }
       .navbar a { width:100%; margin-right:0; }
     }
-
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
     .contact-form form {
       display: flex;
       flex-direction: column;
