@@ -12,8 +12,11 @@
  <script data-goatcounter="https://jonahmdelaney.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script> <!-- GoatCounter Analytics -->
   
  <title>Resume Home</title>
-  <!-- CSS STARTS HERE -->
+  
+  <!-- C S S   S T A R T S   H E R E -->
+  
   <style>
+    
     :root {
       --bg: #FFFFFF;
       --text: #222222;
@@ -38,11 +41,20 @@
       line-height: 1.6;
       transition: background-color 0.3s, color 0.3s;
     }
+    
     .theme-toggle { position: fixed; top: 1rem; right: 1rem; background: none; border: 1px solid var(--text); color: var(--text); padding: 0.4rem 0.6rem; cursor: pointer; font-size: 0.9rem; border-radius: 4px; }
     header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
     .contact-info { max-width: 600px; margin-top: 3rem; }
     h1 { font-size: 3rem; margin-bottom: 0.2rem; line-height: 1.2; }
-    .linkedin-badge, .contact-form { height: 120px; display: flex; align-items: center; justify-content: center; flex-shrink: 5; margin-bottom: 6rem; }
+    
+    .linkedin-badge { 
+      height: auto; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      flex-shrink: 5; 
+      margin-bottom: 6rem; 
+    }
     .linkedin-light, .linkedin-dark { width: 100%; height: 100%; display: none; }
     
     [data-theme="light"] .linkedin-light { display: block; }
@@ -60,10 +72,12 @@
     .two-column ul { flex: 1; min-width: 250px; }
     .job-title { font-weight: bold; text-decoration: underline; }
     .location { font-style: italic; }
+    
     .navbar { position:sticky; top:0; z-index:1000; display:flex; flex-wrap:wrap; align-items:center; background:#333; padding:.5rem 1rem; width:100%; }
     .navbar a, .navbar button { color:#fff; text-decoration:none; margin-right:1rem; padding:.5rem; background:none; border:none; cursor:pointer; }
     .navbar a:hover, .navbar button:hover { background:#444; border-radius:4px; }
     .navbar button { margin-left:auto; }
+    
     .privacy-disclaimer { font-size: 12px; color: #666; text-align: center; margin-top: 40px; padding: 20px; border-top: 1px solid #ccc; }
 
     @media (max-width: 600px) {
@@ -73,17 +87,21 @@
       .navbar button { margin-left:0; width:100%; text-align:left; }
       .navbar a { width:100%; margin-right:0; }
     }
+    
+    /* Layout container for badge + form */
     .contact-container {
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
       justify-content: space-between;
+      align-items: flex-start;
       margin-top: 2rem;
     }
-    .contact-form form {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
+    
+    /* Let both columns grow/shrink nicely; stack on small screens */
+    .linkedin-col, .contact-form {
+      flex: 1 1 320px;
+      min-width: 300px;
     }
 
     .contact-form input, .contact-form textarea {
@@ -92,6 +110,8 @@
       border-radius: 6px;
       border: 1px solid #ccc;
     }
+    
+    /* Accessible helper for live status text */
     .visually-hidden {
       position: absolute !important;
       height: 1px; width: 1px;
@@ -100,12 +120,15 @@
       white-space: nowrap;
     }
     
-  </style> <!-- CSS ENDS HERE -->
+  </style> 
+
+  <!-- C S S   E N D S   H E R E -->
   
 </head>
+  
+  <!-- S T A R T   B O D Y   H E R E -->
+  
 <body>
-<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-
 <header>
 <div class="navbar">
   <a href="index.html">Home</a>
@@ -114,40 +137,59 @@
   <button id="darkToggle" onclick="toggleTheme()">Dark Mode</button>
 </div>
 
-
 </header>
-  <section id="contact" class="contact-container">
-  <div class="contact-form">
-    <h2>Contact Me</h2>
-    <form id="contact-form" novalidate>
-      <!-- Honeypot: hidden field to trap bots -->
-      <input type="text" name="hp" id="hp" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;">
+  
+<!-- CONTACT SECTION: badge + form side-by-side -->
+    <section id="contact" class="contact-container">
+      <div class="linkedin-col">
+        <div class="linkedin-badge">
+          <div class="linkedin-light">
+            <div class="badge-base LI-profile-badge"
+                 data-locale="en_US"
+                 data-size="large"
+                 data-theme="light"
+                 data-type="HORIZONTAL"
+                 data-vanity="jonahdelaney"
+                 data-version="v1"></div>
+          </div>
+          <div class="linkedin-dark">
+            <div class="badge-base LI-profile-badge"
+                 data-locale="en_US"
+                 data-size="large"
+                 data-theme="dark"
+                 data-type="HORIZONTAL"
+                 data-vanity="jonahdelaney"
+                 data-version="v1"></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="contact-form">
+        <h2>Contact Me</h2>
+        <form id="contact-form" novalidate>
+          <!-- Honeypot (hidden) -->
+          <input type="text" name="hp" id="hp" autocomplete="off" tabindex="-1" aria-hidden="true"
+                 style="position:absolute;left:-9999px;opacity:0;">
+    
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" inputmode="email" autocomplete="email"
+                 required aria-required="true" placeholder="you@example.com">
+    
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" required aria-required="true" placeholder="Subject">
+    
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" required aria-required="true"
+                    placeholder="Write your message here..."></textarea>
+    
+          <button type="submit" id="send-btn">Send</button>
+    
+          <!-- Status messages (screen-reader friendly) -->
+          <p id="form-status" role="status" aria-live="polite" class="visually-hidden"></p>
+        </form>
+      </div>
+    </section>
 
-      <label for="email">Your Email</label>
-      <input type="email" id="email" name="email" inputmode="email" autocomplete="email" required aria-required="true" placeholder="you@example.com">
-
-      <label for="subject">Subject</label>
-      <input type="text" id="subject" name="subject" required aria-required="true" placeholder="Subject">
-
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="6" required aria-required="true" placeholder="Write your message here..."></textarea>
-
-      <button type="submit" id="send-btn">Send</button>
-
-      <!-- Status messages (screen-reader friendly) -->
-      <p id="form-status" role="status" aria-live="polite" class="visually-hidden"></p>
-    </form>
-  </div>
-</section>
-
-  <div class="linkedin-badge">
-    <div class="linkedin-light">
-<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="light" data-type="HORIZONTAL" data-vanity="jonahdelaney" data-version="v1"></div>
-    </div>
-    <div class="linkedin-dark">
-<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="HORIZONTAL" data-vanity="jonahdelaney" data-version="v1"></div>
-    </div>
-  </div>
 
 <div class="professional_summary">
   <h2>Professional Summary</h2>
