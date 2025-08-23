@@ -120,7 +120,104 @@
       clip: rect(1px, 1px, 1px, 1px);
       white-space: nowrap;
     }
-    
+
+
+
+
+
+
+
+    /* ---------------------------------------------------------------------------------------------------------------- */
+
+    /* --- Contact section layout polish --- */
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;       /* center the two columns within the page */
+  align-items: flex-start;
+  margin-top: 2rem;
+}
+
+.linkedin-col, .contact-form {
+  flex: 1 1 380px;               /* slightly wider min size for nicer side-by-side */
+  max-width: 520px;              /* keep each column from getting too wide */
+}
+
+/* Let the badge size itself and stay visually centered */
+.linkedin-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;       /* center the badge inside its column */
+  margin-bottom: 1.5rem;         /* a bit tighter than 2rem if you like */
+  height: auto;                  /* IMPORTANT: override fixed height */
+}
+
+/* Subtle “card” feel for the form so it reads as a unit */
+.contact-form {
+  background: var(--banner);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+}
+
+/* Form internals */
+.contact-form form {
+  display: grid;
+  gap: 0.8rem;
+}
+
+/* Inputs & textarea */
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #cfcfcf;
+  background: var(--bg);
+  color: var(--text);
+  transition: border-color .15s ease, box-shadow .15s ease, background-color .2s ease, color .2s ease;
+}
+
+/* Focus states (accessible + on-brand) */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+/* Labels a tad bolder for readability */
+.contact-form label {
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+/* Button styling */
+#send-btn {
+  justify-self: start;           /* left-align button; change to 'center' if you prefer */
+  padding: 0.65rem 1rem;
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  transition: transform .05s ease, filter .15s ease, opacity .2s ease;
+}
+
+#send-btn:hover { filter: brightness(1.05); }
+#send-btn:active { transform: translateY(1px); }
+#send-btn:disabled { opacity: .65; cursor: not-allowed; }
+
+/* Headings spacing tighter for the card feel */
+.contact-form h2 {
+  margin: 0 0 .75rem 0;
+  background: none;              /* remove the banner stripe inside the card */
+  padding: 0;
+  border: 0;
+  line-height: 1.2;
+}
+    /* ---------------------------------------------------------------------------------------------------------------- */
   </style> 
 
   <!-- C S S   E N D S   H E R E -->
