@@ -182,9 +182,11 @@
   background: var(--bg);
   color: var(--text);
   transition: border-color .15s ease, box-shadow .15s ease, background-color .2s ease, color .2s ease;
+  resize: none;
+  height: 150px;
 }
 
-/* Focus states (accessible + on-brand) */
+/* Focus state on text area (accessibility) */
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
@@ -200,7 +202,7 @@
 
 /* Button styling */
 #send-btn {
-  justify-self: start;           /* left-align button; change to 'center' if you prefer */
+  justify-self: start; /* left-aligns the button */
   padding: 0.65rem 1rem;
   border: 0;
   border-radius: 8px;
