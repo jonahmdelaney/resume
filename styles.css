@@ -1,3 +1,4 @@
+    
     :root {
       --bg: #FFFFFF;
       --text: #222222;
@@ -58,6 +59,12 @@
       white-space: nowrap;
     }
 
+
+
+
+
+
+
     /* ---------------------------------------------------------------------------------------------------------------- */
 
     /* --- Contact section layout polish --- */
@@ -66,13 +73,14 @@
   flex-wrap: wrap;
   gap: 2rem;
   justify-content: center;       /* center the two columns within the page */
-  align-items: flex-start;
+  align-items: stretch;          /* ensure badge and form share height */
   margin-top: 2rem;
 }
 
 .linkedin-col, .contact-form {
   flex: 1 1 380px;               /* slightly wider min size for nicer side-by-side */
   max-width: 520px;              /* keep each column from getting too wide */
+  display: flex;                 /* allow inner card to fill the column */
 }
 
 /* Subtle “card” feel for the form so it reads as a unit */
@@ -83,8 +91,14 @@
   padding: 1rem 1.25rem;
 }
 
+/* Keep the heading beside the form inputs */
+.contact-form h2 {
+  margin: 0 1rem 0 0;            /* space between heading and fields */
+}
+
 /* Form internals */
 .contact-form form {
+  flex: 1;                       /* grow to fill remaining space */
   display: grid;
   gap: 0.8rem;
 }
@@ -98,6 +112,7 @@
   border: 1px solid #cfcfcf;
   background: var(--bg);
   color: var(--text);
+  box-sizing: border-box;        /* prevent overflow from padding */
   transition: border-color .15s ease, box-shadow .15s ease, background-color .2s ease, color .2s ease;
   resize: none;
 }
@@ -132,14 +147,6 @@
 #send-btn:active { transform: translateY(1px); }
 #send-btn:disabled { opacity: .65; cursor: not-allowed; }
 
-/* Headings spacing tighter for the card feel */
-.contact-form h2 {
-  margin: 0 0 .75rem 0;
-  background: none;              /* remove the banner stripe inside the card */
-  padding: 0;
-  border: 0;
-  line-height: 1.2;
-}
     /* ---------------------------------------------------------------------------------------------------------------- */
 /* Custom badge card — now full height, matching the form */
 .li-card {
@@ -153,7 +160,7 @@
 
   /* make it fill the column’s height */
   width: 100%;
-  height: 100%;                      /* key to equal height */
+  height: 100%;                      /* 👈 key to equal height */
   padding: 1rem 1.25rem;
   border: 1px solid var(--card-border);
   border-radius: 12px;
