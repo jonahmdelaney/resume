@@ -184,10 +184,8 @@
   display: grid;
   grid-template-columns: 84px 1fr;
   gap: 1rem;
-
-  /* make it fill the column’s height */
   width: 100%;
-  height: 100%;                      /* 👈 key to equal height */
+  height: 91%; /* control height of linkedin card. currently set to be same height as "contact me" card*/
   padding: 1rem 1.25rem;
   border: 1px solid var(--card-border);
   border-radius: 12px;
@@ -196,6 +194,7 @@
   text-decoration: none;
   transition: transform .05s ease, box-shadow .15s ease, border-color .15s ease;
 }
+
 .li-card:hover { box-shadow: 0 6px 18px rgba(0,0,0,.08); border-color: rgba(0,0,0,.12); }
 .li-card:active { transform: translateY(1px); }
 
@@ -228,6 +227,7 @@
   border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
 }
 .li-icon { width: 16px; height: 16px; fill: currentColor; }
+
 /* Scales nicely on small screens */
 @media (max-width: 700px) {
   .linkedin-col, .contact-form { max-width: 100%; }
@@ -235,4 +235,4 @@
   .li-avatar { width: 64px; height: 64px; }
 }
 
-.hidden-field { position: absolute; left: -9999px; opacity: 0; }
+.hidden-field { position: absolute; left: -9999px; opacity: 0; } /* hidden field for honeypot use */
