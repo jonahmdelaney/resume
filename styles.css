@@ -1,4 +1,4 @@
-    
+   
     :root {
       --bg: #FFFFFF;
       --text: #222222;
@@ -89,11 +89,16 @@
   border: 1px solid rgba(0,0,0,.08);
   border-radius: 12px;
   padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-/* Keep the heading beside the form inputs */
+/* Heading centered at top */
 .contact-form h2 {
-  margin: 0 1rem 0 0;            /* space between heading and fields */
+  margin: 0 0 1rem;
+  text-align: center;
+  border-left: none;
 }
 
 /* Form internals */
@@ -101,6 +106,17 @@
   flex: 1;                       /* grow to fill remaining space */
   display: grid;
   gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.contact-form .form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.contact-form .form-full {
+  grid-column: 1 / -1;
 }
 
 /* Inputs & textarea */
@@ -134,6 +150,7 @@
 /* Button styling */
 #send-btn {
   justify-self: start; /* left-aligns the button */
+  grid-column: 1 / -1;
   padding: 0.65rem 1rem;
   border: 0;
   border-radius: 8px;
