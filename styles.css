@@ -21,9 +21,9 @@
 
     p, li { font-size: 0.95rem; line-height: 1.4; margin: 0.2rem 0; }
     ul { padding-left: 1.2rem; margin: 0.2rem 0; }
-    .professional_summary { margin-top: 10rem; margin-bottom: 2rem; }
-    .section { margin-top: 1rem; margin-bottom: 2rem; }
+    .professional_summary { margin-top: 2rem; margin-bottom: 2rem; }
 
+    .section { margin-top: 1rem; margin-bottom: 2rem; }
     .two-column { display: flex; flex-wrap: wrap; gap: 2rem; }
     .two-column ul { flex: 1; min-width: 250px; }
     .job-title { font-weight: bold; text-decoration: underline; }
