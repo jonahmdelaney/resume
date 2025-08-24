@@ -182,11 +182,24 @@
 }
 
 /* Stack content so name/title at top, chips at bottom; fills vertical space */
+/*  */
+/* Avatar column stacks avatar and meta vertically */
+.li-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Stack header at top with button pinned to bottom */
+/*  */
 .li-body {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;    /* top meta + bottom actions */
-  gap: .5rem;
+/*   justify-content: space-between;    /* top meta + bottom actions */
+/*     */
+     justify-content: space-between;    /* header top, actions bottom */
+/*  */
+  gap: .5rem; */
 }
 
 .li-name { font-weight: 800; font-size: 1.1rem; line-height: 1.2; }
@@ -198,7 +211,11 @@
 .li-row { display: inline-flex; align-items: center; gap: .5rem; }
 .li-text { font-size: .92rem; }
 
-.li-actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .5rem; }
+/* .li-actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .5rem; } */
+/*  */
+.li-actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .5rem; justify-content: center; }
+/*  */
+
 .li-chip {
   display: inline-flex; align-items: center; gap: .35rem;
   font-size: 0.85rem; padding: .3rem .6rem; border-radius: 999px;
