@@ -81,6 +81,7 @@
   flex: 1 1 380px;               /* slightly wider min size for nicer side-by-side */
   max-width: 520px;              /* keep each column from getting too wide */
   display: flex;                 /* allow inner card to fill the column */
+  align-items: stretch;          /* ensure inner cards take full height */
 }
 
 /* Subtle “card” feel for the form so it reads as a unit */
@@ -98,7 +99,10 @@
 .contact-form h2 {
   margin: 0 0 1rem;
   text-align: center;
-  border-left: none;
+  background: none;           /* remove global heading background */
+  border-left: none;          /* remove accent bar */
+  padding: 0.5rem 0.6rem;     /* keep consistent height */
+  min-height: 2.2rem;
 }
 
 /* Form internals */
@@ -106,7 +110,13 @@
   flex: 1;                       /* grow to fill remaining space */
   display: grid;
   gap: 0.8rem;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(2, 1fr); /* email & subject side by side */
+}
+
+@media (max-width: 500px) {
+  .contact-form form {
+    grid-template-columns: 1fr;   /* stack fields on narrow screens */
+  }
 }
 
 .contact-form .form-row {
