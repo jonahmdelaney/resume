@@ -90,19 +90,20 @@
     }
     
     /* Layout container for badge + form */
-    .contact-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-top: 2rem;
-    }
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: stretch;              /* 👈 stretch columns to same height */
+  margin-top: 2rem;
+}
     
     /* Let both columns grow/shrink nicely; stack on small screens */
     .linkedin-col, .contact-form {
-      flex: 1 1 320px;
-      min-width: 300px;
+ flex: 1 1 380px;
+  max-width: 520px;                  /* won’t exceed about half the page */
+  display: flex;  
     }
 
 .contact-form input,
@@ -162,7 +163,7 @@
 .contact-form {
   background: var(--banner);
   border: 1px solid rgba(0,0,0,.08);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 1rem 1.25rem;
 }
 
@@ -224,16 +225,20 @@
   line-height: 1.2;
 }
     /* ---------------------------------------------------------------------------------------------------------------- */
-    /* Custom LinkedIn badge card */
+/* Custom badge card — now full height, matching the form */
 .li-card {
   --card-bg: var(--banner);
   --card-border: rgba(0,0,0,.08);
   --muted: color-mix(in srgb, var(--text) 70%, transparent);
+
   display: grid;
-  grid-template-columns: 72px 1fr;
-  gap: 0.9rem;
-  align-items: center;
-  padding: 0.9rem 1rem;
+  grid-template-columns: 84px 1fr;
+  gap: 1rem;
+
+  /* make it fill the column’s height */
+  width: 100%;
+  height: 100%;                      /* 👈 key to equal height */
+  padding: 1rem 1.25rem;
   border: 1px solid var(--card-border);
   border-radius: 12px;
   background: var(--card-bg);
@@ -241,32 +246,43 @@
   text-decoration: none;
   transition: transform .05s ease, box-shadow .15s ease, border-color .15s ease;
 }
-
 .li-card:hover { box-shadow: 0 6px 18px rgba(0,0,0,.08); border-color: rgba(0,0,0,.12); }
 .li-card:active { transform: translateY(1px); }
 
 .li-avatar {
-  width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
+  width: 84px; height: 84px; border-radius: 50%; object-fit: cover;
   border: 2px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  align-self: start;
 }
 
-.li-body { display: grid; gap: 0.15rem; }
-.li-name { font-weight: 700; font-size: 1.05rem; line-height: 1.2; }
-.li-title { font-size: 0.92rem; color: var(--muted); }
+/* Stack content so name/title at top, chips at bottom; fills vertical space */
+.li-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;    /* top meta + bottom actions */
+  gap: .5rem;
+}
 
-.li-actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .25rem; }
+.li-name { font-weight: 800; font-size: 1.1rem; line-height: 1.2; }
+.li-title { font-size: 0.95rem; color: var(--muted); margin-top: .125rem; }
+
+.li-meta { display: grid; gap: .4rem; margin-top: .3rem; }
+.li-row { display: inline-flex; align-items: center; gap: .5rem; }
+.li-text { font-size: .92rem; }
+
+.li-actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .5rem; }
 .li-chip {
   display: inline-flex; align-items: center; gap: .35rem;
-  font-size: 0.85rem; padding: .25rem .5rem; border-radius: 999px;
+  font-size: 0.85rem; padding: .3rem .6rem; border-radius: 999px;
   background: color-mix(in srgb, var(--accent) 14%, transparent);
   border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
 }
-.li-icon { width: 14px; height: 14px; fill: currentColor; }
-
+.li-icon { width: 16px; height: 16px; fill: currentColor; }
 /* Scales nicely on small screens */
-@media (max-width: 440px) {
-  .li-card { grid-template-columns: 56px 1fr; padding: .75rem .9rem; }
-  .li-avatar { width: 56px; height: 56px; }
+@media (max-width: 700px) {
+  .linkedin-col, .contact-form { max-width: 100%; }
+  .li-card { grid-template-columns: 64px 1fr; }
+  .li-avatar { width: 64px; height: 64px; }
 }
   </style> 
 
@@ -292,18 +308,32 @@
       <!-- Custom LinkedIn Badge -->
 <a class="li-card" href="https://www.linkedin.com/in/jonahdelaney" target="_blank" rel="noopener noreferrer" aria-label="View Jonah Delaney on LinkedIn">
   <img class="li-avatar" src="images/jonah.jpg" alt="Jonah Delaney headshot">
+
   <div class="li-body">
-    <div class="li-name">Jonah M. Delaney</div>
-    <div class="li-title">Tier 3 PC Support Technician</div>
+    <div>
+      <div class="li-name">Jonah M. Delaney</div>
+      <div class="li-title">Tier 3 PC Support Technician</div>
+    </div>
+
+    <div class="li-meta">
+      <div class="li-row">
+        <!-- briefcase -->
+        <svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4h4a2 2 0 0 1 2 2v1h3a1 1 0 0 1 1 1v4h-9V8H3V7a1 1 0 0 1 1-1h3V6a2 2 0 0 1 2-2zm4 3V6h-4v1h4zM3 13h9v5H4a1 1 0 0 1-1-1v-4zm11 5v-5h7v4a1 1 0 0 1-1 1h-6z"/></svg>
+        <span class="li-text">Current: <strong>Leidos (Pearl River Technologies)</strong></span>
+      </div>
+      <div class="li-row">
+        <!-- pin -->
+        <svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+        <span class="li-text">Stennis Space Center, MS</span>
+      </div>
+    </div>
+
     <div class="li-actions">
+      <!-- “View profile” chip -->
       <span class="li-chip">
-        <!-- inline SVG LinkedIn icon (no external files) -->
-        <svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4.98 3.5c0 1.38-1.12 2.5-2.5 2.5A2.5 2.5 0 0 1 0 3.5C0 2.12 1.12 1 2.48 1a2.5 2.5 0 0 1 2.5 2.5zM0 24h5V7H0v17zM8 24h5v-9.5c0-2.54 3-2.74 3 0V24h5V13.5c0-6.07-6.5-5.85-8-2.86V7H8v17z"/>
-        </svg>
-        LinkedIn
+        <svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5c0 1.38-1.12 2.5-2.5 2.5A2.5 2.5 0 0 1 0 3.5C0 2.12 1.12 1 2.48 1a2.5 2.5 0 0 1 2.5 2.5zM0 24h5V7H0v17zM8 24h5v-9.5c0-2.54 3-2.74 3 0V24h5V13.5c0-6.07-6.5-5.85-8-2.86V7H8v17z"/></svg>
+        View on LinkedIn
       </span>
-      <span class="li-chip">New Orleans, LA</span>
     </div>
   </div>
 </a>
