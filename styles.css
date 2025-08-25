@@ -41,8 +41,8 @@
       .navbar button { margin-left:0; width:100%; text-align:left; }
       .navbar a { width:100%; margin-right:0; }
     }
-    /* Accessible helper for live status text */
-    .visually-hidden { position: absolute !important; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); white-space: nowrap; }
+    
+    .visually-hidden { position: absolute !important; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); white-space: nowrap; }   /* Accessible helper for live status text */
 
     /* --- Contact section layout --- */
       .contact-container {
@@ -87,7 +87,7 @@
         flex: 1;                       /* grow to fill remaining space */
         display: grid;
         gap: 0.8rem;
-        grid-template-columns: repeat(2, 1fr); /* email & subject side by side */
+        grid-template-columns: repeat(2, 1fr);   /* email & subject side by side */
       }
       
       @media (max-width: 500px) {
@@ -160,8 +160,13 @@
   --avatar-size: 150px; /* adjusts the size of the avatar picture */
 
   display: grid;
-  grid-template-columns: var(--avatar-size) 1fr;  gap: 1rem;
-  width: 100%;
+  grid-template-columns: var(--avatar-size) 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "avatar header"
+    "meta   meta"
+    "actions actions";
+  gap: .5rem 1rem;  width: 100%;
   height: 91%; /* control height of linkedin card. currently set to be same height as "contact me" card*/
   padding: 1rem 1.25rem;
   border: 1px solid var(--card-border);
@@ -176,19 +181,18 @@
 .li-card:active { transform: translateY(1px); }
 
 .li-avatar {
-  width: var(--avatar-size); height: var(--avatar-size); border-radius: 50%; object-fit: cover;
+  grid-area: avatar;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: 50%;
+  object-fit: cover;
   border: 2px solid color-mix(in srgb, var(--accent) 40%, transparent);
   align-self: start;
 }
 
-/* Stack content so name/title at top, chips at bottom; fills vertical space */
-/*  */
-/* Avatar column stacks avatar and meta vertically */
-.li-left {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
+/* Flatten wrappers so children participate directly in grid */
+.li-left { display: contents; }
+.li-body { display: contents; }
 
 /* Stack header at top with button pinned to bottom */
 /*  */
@@ -205,7 +209,7 @@
 .li-name { font-weight: 800; font-size: 1.1rem; line-height: 1.2; }
 .li-title { font-size: 0.95rem; color: var(--muted); margin-top: .125rem; }
 
-.li-header { text-align: center; }
+.li-header { grid-area: header; text-align: center; align-self: center; }
 
 .li-meta { display: grid; gap: .4rem; margin-top: .3rem; }
 .li-row { display: inline-flex; align-items: center; gap: .5rem; }
@@ -213,7 +217,14 @@
 
 /* .li-actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .5rem; } */
 /*  */
-.li-actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .5rem; justify-content: center; }
+.li-actions {
+  grid-area: actions;
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-self: end;
+}
 /*  */
 
 .li-chip {
