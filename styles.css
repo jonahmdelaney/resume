@@ -189,16 +189,17 @@
   object-fit: cover;
   border: 2px solid color-mix(in srgb, var(--accent) 40%, transparent);
   align-self: start;
+  margin-bottom: 1.125rem;
 }
 
 /* Flatten wrappers so children participate directly in grid */
 .li-left { display: contents; }
 .li-body { display: contents; }
 
-.li-name { font-weight: 800; font-size: 1.1rem; line-height: 1.2; }
-.li-title { font-size: 0.95rem; color: var(--muted); margin-top: .125rem; }
+.li-name { font-weight: 750; font-size: 2rem; line-height: 1.2; }
+.li-title { font-size: 1.1rem; color: var(--muted); margin-top: .5rem; }
 .li-header { grid-area: header; align-self: start; text-align: left; }
-.li-meta { grid-area: meta; display: grid; gap: .4rem; }
+.li-meta { grid-area: meta; display: grid; gap: .7rem; }
 .li-row { display: inline-flex; align-items: center; gap: .5rem; }
 .li-text { font-size: .92rem; }
 
