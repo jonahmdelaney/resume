@@ -1,0 +1,14 @@
+# Contact information
+Contact: mailto:security@jonahmdelaney.dev
+
+# Policy page
+Policy: https://jonahmdelaney.dev/security-policy
+
+# Expiry date (update this yearly)
+Expires: 2025-12-31T23:59:59.000Z
+
+# Preferred language for communication
+Preferred-Languages: en
+
+# Canonical location of this file
+Canonical: https://jonahmdelaney.dev/.well-known/security.txt
