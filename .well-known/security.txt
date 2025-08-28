@@ -12,3 +12,4 @@ Preferred-Languages: en
 
 # Canonical location of this file
 Canonical: https://jonahmdelaney.dev/.well-known/security.txt
+
